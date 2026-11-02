@@ -3,10 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Jukebox</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <p>hello world!</p>
-    <div>This is my world!</div>
+
+ 
+    <div id="albums"></div>
+    <script src="../db/tracklist.js"></script>
+    <script src="../db/showTracks.js"></script>
+    
+
+    <!-- Queue div to display the current queue of songs -->
+    <div id="queue"></div>
+
+    <!-- Left menu -->
+    <div id="left-menu">
+        <div id="jukebox-logo"></div>
+            <img class="logo" src="../images/logo.png" alt="Jukebox Logo">
+        </div>
+        <div id="menu-buttons">
+            <a href='index.html'><button id="home-button" type="button" class="button">Home</button></a>
+            <a href='order-songs.html'><button id="order-button" type="button" class="button">Order Song</button></a>
+        </div>
+    </div>
+
+    <!-- Søgefunktionalitet tilføjet i topnav --> 
+    <div class="topnav">
+        <input type="text" placeholder="Search..">
+    </div>
+
+     
+    <div id="prices">
+    <h3>
+        <img src="../images/coin.svg.svg" alt="Coin">
+        Priser
+    </h3>
+    <p>1 sang - 2 kr</p>
+    <p>3 sange - 5 kr</p>
+</div>
+
+    <div id="playing">
+        <img src="" alt="Now Playing">
+        <h2 id="title-song"> </h2>
+        <!-- need script for how to get current song info in queue -->
+        <h3 id="artist-song"> </h3>
+        <p id=""></p>
+
+    </div>
+
+
+    
+
+    
+    
 </body>
 </html>

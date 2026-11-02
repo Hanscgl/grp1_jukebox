@@ -1,0 +1,17 @@
+.header {
+  display: flex;
+  justify-content: center;
+  font-size: 30px;
+  color: #262626;
+  margin-top: 20px;
+}
+
+.topnav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  scale: 1.5;
+}
+  input{
+  font-size: 18px;
+  }
