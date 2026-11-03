@@ -3,20 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="order-songs.css">
+    <link rel="stylesheet" href="styles.css">
     <title>Order Songs</title>
 </head>
 <body>
-    <h1>Order Songs</h1>
+    
+    <div id="page-layout">
+    <div id="main-content">
+
+        <div class="left-menu">
+            <div id="logo">
+                <img src="../images/logo.png" alt="Jukebox Logo">
+            </div>
+            <!-- Menu buttons -->
+            <div class="menu-buttons">
+                <a href="index.html" class="active">Home</a>
+                <a href="order-songs.html">Order Song</a>
+            </div>
+        </div>
+    </div>
+    <div class="header">
+        <h1>Order Songs</h1>
+    </div>
 
      <!-- Søgefunktionalitet tilføjet i topnav --> 
     <div class="topnav">
         <input type="text" placeholder="Search..">
     </div>
 
-    <div id="song-list">
+    <div id="song-list"> </div>
+    </div>
+    </div>
           
-   <div id="prices1" class="prices1">
+<div class="right-sidebar">
+    <div id="prices1" class="prices1">
         <h3>
             <img src="../images/coin.svg.svg" alt="Coin">
             Priser
@@ -24,6 +44,17 @@
         <p>1 sang - 2 kr</p>
         <p>3 sange - 5 kr</p>
     </div>
+
+    <div id="kurv" class="kurv">
+        <h3>Indkøbskurv</h3>
+    </div>
+    <div id="payment-popup">
+    <h2>Betaling</h2>
+    <p>Betal med MobilePay</p>
+    <p>Scan QR-koden for at betale</p>
+</div>
+<button id="payment-button">Gå til betaling</button> 
+    
 </div>
 <script src="songList.js"></script>
 </body>
