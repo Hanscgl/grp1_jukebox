@@ -8,24 +8,23 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 
-
+    <!-- Din egen CSS-fil -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
- 
     <div id="albums"></div>
     <script src="../db/tracklist.js"></script>
     <script src="../db/showTracks.js"></script>
     
-
     <!-- Queue div to display the current queue of songs -->
     <div id="queue"></div>
 
-    <!-- Left menu -->
+    <!-- Left menu med det klikbare logo -->
     <div id="left-menu">
-        <div id="jukebox-logo"></div>
-            <img class="logo" src="../images/logo.png" alt="Jukebox Logo">
+        <div id="jukebox-logo">
+            <!-- ID "admin-trigger" og cursor pointer gør billedet klar til 3 klik -->
+            <img id="admin-trigger" class="logo" src="../images/logo.png" alt="Jukebox Logo" style="cursor: pointer;">
         </div>
         <div id="menu-buttons">
             <a href='index.html'><button id="home-button" type="button" class="button">Home</button></a>
@@ -37,16 +36,15 @@
     <div class="topnav">
         <input type="text" placeholder="Search..">
     </div>
-
      
     <div id="prices">
-    <h3>
-        <img src="../images/coin.svg.svg" alt="Coin">
-        Priser
-    </h3>
-    <p>1 sang - 2 kr</p>
-    <p>3 sange - 5 kr</p>
-</div>
+        <h3>
+            <img src="../images/coin.svg.svg" alt="Coin">
+            Priser
+        </h3>
+        <p>1 sang - 2 kr</p>
+        <p>3 sange - 5 kr</p>
+    </div>
 
     <div id="playing">
         <img src="" alt="Now Playing">
@@ -54,15 +52,57 @@
         <!-- need script for how to get current song info in queue -->
         <h3 id="artist-song"> </h3>
         <p id="album-song"></p>
-        
-        
-
     </div>
 
+    <!-- Bootstrap Modal / Pop-up til Admin Menu -->
+    <div class="modal fade" id="adminModal" tabindex="-1" aria-labelledby="adminModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="background-color: #2a1b3d; color: white; border: 2px solid #ff4b5c;">
+          <div class="modal-header">
+            <h5 class="modal-title" id="adminModalLabel">Admin Menu</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body text-center">
+            <p>Velkommen til admin-styrepanelet!</p>
+            <button class="btn btn-danger m-2">Pause / Afspil</button>
+            <button class="btn btn-warning m-2">Spring sang over</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    
+    <!-- Bootstrap JS Bundle (krævet for modal pop-up) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 
-    
-    
+    <script src="mainScript.js"></script>
+
+    <!-- Script til at fange 3 klik i træk og tjekke 4-cifret kode -->
+    <script>
+        let clickCount = 0;
+        let clickTimer = null;
+
+        document.getElementById('admin-trigger').addEventListener('click', function() {
+            clickCount++;
+            
+            if (clickCount === 1) {
+                clickTimer = setTimeout(function() {
+                    clickCount = 0; // Nulstiller hvis der går for lang tid
+                }, 600); // 600 millisekunder tidsvindue
+            } else if (clickCount === 3) {
+                clearTimeout(clickTimer);
+                clickCount = 0;
+
+                // Pop-up der beder om 4-cifret kode
+                let pin = prompt("Indtast 4-cifret kode:");
+                if (pin === "1234") { // Ændr "1234" til den kode I ønsker
+                    var adminModal = new bootstrap.Modal(document.getElementById('adminModal'));
+                    adminModal.show();
+                } else if (pin !== null) {
+                    alert("Forkert kodeord!");
+                }
+            }
+        });
+    </script>
+
 </body>
 </html>
