@@ -5,10 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jukebox</title>
     <!-- Bootstrap CSS -->
+    <!-- Bootstrap JS Bundle (krævet for modal pop-up) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 <body>
- 
+    <div class="background-image"></div>
     <div id="albums"></div>
     <script src="../db/tracklist.js"></script>
     <script src="../db/showTracks.js"></script>
@@ -18,35 +23,38 @@
         <!-- Left menu -->
         <div class="left-menu">
             <div id="logo">
-                <img src="../images/logo.png" alt="Jukebox Logo">
+                 <img id="admin-trigger" class="logo" src="../images/logo.png" alt="Jukebox Logo" style="cursor: pointer;">
             </div>
             <!-- Menu buttons -->
             <div class="menu-buttons">
-                <a href="index.html" class="active">Home</a>
-                <a href="order-songs.html">Order Song</a>
+                <a href="index.html" class="active"><i class="bi bi-house me-2"></i>Home</a>
+                <a href="order-songs.html"><i class="bi bi-music-note-beamed me-2"></i>Order Song</a>
             </div>
         </div>
 
         <div id="main-content">
             <!-- Søgefunktionalitet tilføjet i topnav --> 
             <div class="topnav">
-                <input type="text" placeholder="Search..">
+                <input type="text" id="searchInput" placeholder="Søg efter en sang eller kunstner..">
             </div>
 
             <div id="playing">
                 <h1>Now Playing</h1>
                 <img id=album src="../images/album.jpg" alt="Now Playing">
-                <h2 id="title-song"> Song Name </h2>
+                <h2 id="title-song">No song queued</h2>
                 <!-- need script for how to get current song info in queue -->
                 <h3 id="artist-song"> Artist </h3>
                 <p id="album-song">Album </p>
+                
                 <progress id="song-progress" value="0" max="100"></progress>
+                <div style="display: flex; justify-content: space-between; width: 250px; margin: 5px auto 0 auto; font-size: 14px; color: #fff;">
+                    <span id="current-time">0:00</span>
+                    <span id="total-time">0:00</span>
             </div>
         </div>
 
-        
         <div id="right-content">
-            <div id="prices" class="prices">
+            <div id="prices1" class="prices1">
                 <h3>
                     <img src="../images/coin.svg.svg" alt="Coin">
                     Priser
@@ -55,13 +63,35 @@
                 <p>3 sange - 5 kr</p>
             </div>
     <!-- Queue div to display the current queue of songs -->
-            <div id="queue-container"></div>
+            <div id="queue-container">
                 <h2>Song Queue</h2>
-                <div id="queue"> </div>
+                <div id="queue"></div>
             </div>
         </div>
     </div>
+</div>
 
-        <link rel="stylesheet" href="styles.css">
+ <!-- Bootstrap JS Bundle (krævet for modal pop-up) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+
+
+     <!-- Bootstrap Modal / Pop-up til Admin Menu -->
+    <div class="modal fade" id="adminModal" tabindex="-1" aria-labelledby="adminModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="background-color: #2a1b3d; color: white; border: 2px solid #ff4b5c;">
+          <div class="modal-header">
+            <h5 class="modal-title" id="adminModalLabel">Admin Menu</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body text-center">
+            <p>Velkommen til admin-styrepanelet!</p>
+            <button class="btn btn-danger m-2">Pause / Afspil</button>
+            <button class="btn btn-warning m-2">Spring sang over</button>
+            <button id="reset-queue" class="btn btn-secondary m-2">Nulstil</button>
+          </div>
+        </div>
+      </div>
+      
+    <script src="mainScript.js"></script>
 </body>
 </html>
