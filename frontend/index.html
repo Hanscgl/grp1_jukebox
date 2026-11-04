@@ -4,22 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jukebox</title>
-
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-
-    <!-- Din egen CSS-fil -->
-    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
+ 
     <div id="albums"></div>
     <script src="../db/tracklist.js"></script>
     <script src="../db/showTracks.js"></script>
-    
-    <!-- Queue div to display the current queue of songs -->
-    <div id="queue"></div>
+        <div id="page-layout">
 
+        <!-- Left menu -->
+        <div class="left-menu">
+            <div id="logo">
+                <img src="../images/logo.png" alt="Jukebox Logo">
+            </div>
+            <!-- Menu buttons -->
+            <div class="menu-buttons">
+                <a href="index.html" class="active">Home</a>
+                <a href="order-songs.html">Order Song</a>
+            </div>
+        </div>
     <!-- Left menu med det klikbare logo -->
     <div id="left-menu">
         <div id="jukebox-logo">
@@ -32,6 +37,39 @@
         </div>
     </div>
 
+        <div id="main-content">
+            <!-- Søgefunktionalitet tilføjet i topnav --> 
+            <div class="topnav">
+                <input type="text" placeholder="Search..">
+            </div>
+
+            <div id="playing">
+                <h1>Now Playing</h1>
+                <img id=album src="../images/album.jpg" alt="Now Playing">
+                <h2 id="title-song"> Song Name </h2>
+                <!-- need script for how to get current song info in queue -->
+                <h3 id="artist-song"> Artist </h3>
+                <p id="album-song">Album </p>
+                <progress id="song-progress" value="0" max="100"></progress>
+            </div>
+        </div>
+
+        
+        <div id="right-content">
+            <div id="prices" class="prices">
+                <h3>
+                    <img src="../images/coin.svg.svg" alt="Coin">
+                    Priser
+                </h3>
+                <p>1 sang - 2 kr</p>
+                <p>3 sange - 5 kr</p>
+            </div>
+    <!-- Queue div to display the current queue of songs -->
+            <div id="queue-container"></div>
+                <h2>Song Queue</h2>
+                <div id="queue"> </div>
+            </div>
+        </div>
     <!-- Søgefunktionalitet tilføjet i topnav --> 
     <div class="topnav">
         <input type="text" placeholder="Search..">
@@ -104,5 +142,6 @@
         });
     </script>
 
+        <link rel="stylesheet" href="styles.css">
 </body>
 </html>
