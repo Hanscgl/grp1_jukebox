@@ -14,6 +14,7 @@ if (queueDiv) {
     });
 }
 
+// Function to add a song to the checkout array
 function addToCheckout(song) {
     checkout.push(song);
 }
@@ -21,6 +22,7 @@ function addToCheckout(song) {
 if (queue.length > 0) {
     let currentSongTitle = queue[0];
 
+    // Fetch the albums data from the JSON file
     fetch("../db/albums.json")
         .then(response => response.json())
         .then(data => {
@@ -89,11 +91,12 @@ if (queue.length > 0) {
 let clickCount = 0;
 let clickTimer = null;
 
+// EVENTLISTENER TIL AT FÅ ADMIN POP-UP, NÅR MAN KLIKKER 3 GANGE PÅ LOGOET
 let adminTrigger = document.getElementById('admin-trigger');
 if (adminTrigger) {
     adminTrigger.addEventListener('click', function() {
         clickCount++;
-                 
+        
         if (clickCount === 1) {
             clickTimer = setTimeout(function() {
                 clickCount = 0;
@@ -133,6 +136,7 @@ if (SearchInput) {
     });
 } // END OF TAGER SØGETEKSTEN FRA INDEX.HTML OG SÆTTER IND I SØGEFELTET PÅ ORDER-SONGS.HTML
 
+// Reset button in the admin menu
 let resetQueueBtn = document.getElementById("reset-queue");
 if (resetQueueBtn) {
     resetQueueBtn.addEventListener("click", function () {
@@ -141,6 +145,7 @@ if (resetQueueBtn) {
     });
 }
 
+// Function to format time in mm:ss format
 function formatTime(seconds) {
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = Math.floor(seconds % 60);
