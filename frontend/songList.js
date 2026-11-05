@@ -85,6 +85,24 @@ fetch("../db/albums.json")
         });
     });
 
+if (searchBar) {
+    searchBar.addEventListener("input", function(e) {
+        const searchTerm = e.target.value.toLowerCase();
+        const songs = document.querySelectorAll(".song");
+
+        songs.forEach(song => {
+            // Checks entire text content (Title, Artist, Album) against the query
+            const textContent = song.textContent.toLowerCase();
+            
+            // Toggles visibility based on match
+            if (textContent.includes(searchTerm)) {
+                song.style.display = ""; 
+            } else {
+                song.style.display = "none";
+            }
+        });
+    });
+}
 
 
 let paymentButton = document.getElementById("payment-button");
