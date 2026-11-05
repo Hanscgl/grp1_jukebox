@@ -1,8 +1,5 @@
 body {
   background-image: url('../images/background.png');
-  font-family: 'Trebuchet MS', sans-serif;;
-  margin: 0;
-  padding: 0;
 }
 
 .topnav {
@@ -25,15 +22,16 @@ body {
     box-sizing: border-box;
 }
 
-.topnav input::placeholder {
+  .topnav input::placeholder {
     color: #c9b8cc;
 }
-input {
+.input {
   font-size: 18px;
   }
 
 #page-layout {
-  display: grid;
+
+    display: grid;
     grid-template-columns: 330px 1fr 300px;
     height: 100vh;
     gap: 1px;
@@ -66,6 +64,7 @@ input {
 }
 
 .left-menu {
+  opacity: 0.85;
   background-color: #3b1d3d;
   display: flex;
   flex-direction: column;
@@ -87,7 +86,6 @@ input {
   margin-top: 16px;
 }
 
-
 #album {
   width: 100px;
   height: 100px;
@@ -95,6 +93,7 @@ input {
 }
 
 #logo {
+  opacity: 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -108,7 +107,8 @@ input {
   height: 250px;
 }
 .menu-buttons {
-  font-family: 'Trebuchet MS', sans-serif;;
+  font-family: 'Trebuchet MS', sans-serif;
+  opacity: 1;
   display: grid;
   flex-direction: column;
   gap: 8px;
@@ -116,6 +116,7 @@ input {
 }
 
 .menu-buttons a {
+    transition: 0.4;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -232,7 +233,6 @@ input {
   align-content: start;   /* Prevents rows from stretching vertically when there are few songs */
 }
 
-
 /* Optional: Prevent long song titles from blowing out a column's width */
 #song-list > * {
   min-width: 0;
@@ -249,3 +249,26 @@ input {
     cursor: pointer;
 }
 
+.button {
+transition: 0.4s;
+}
+
+.button:hover {
+  opacity: 0.5;
+}
+
+.modal-header {
+  justify-content: center;
+  align-items: center;
+}
+
+.cart-song {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cart-song button {
+  margin-left: auto;
+  flex-shrink: 0;
+}

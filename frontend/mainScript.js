@@ -102,35 +102,36 @@ if (adminTrigger) {
             clearTimeout(clickTimer);
             clickCount = 0;
 
-            let pin = prompt("Indtast 4-cifret kode:");
+            let pin = prompt("INPUT THE SECRET CODE. :");
             if (pin === "1234") {
                 var adminModal = new bootstrap.Modal(document.getElementById('adminModal'));
                 adminModal.show();
             } else if (pin !== null) {
-                alert("Forkert kodeord!");
+                alert("WRONG PIN");
             }
         }
     });
 }
 
-let searchInput = document.getElementById("searchInput");
-if (searchInput) {
-    searchInput.addEventListener("input", function () {
-        let searchText = this.value.trim();
-        if (searchText !== "") {
-            console.log(searchText);
-        }
-    });
 
-    searchInput.addEventListener("keydown", function(event) {
+// TAGER SØGETEKSTEN FRA INDEX.HTML OG SÆTTER IND I SØGEFELTET PÅ ORDER-SONGS.HTML
+let SearchInput = document.getElementById("searchInput");
+
+if (SearchInput) {
+    SearchInput.addEventListener("keydown", function(event) {
         if (event.key === "Enter") {
             let searchText = this.value.trim();
+            
             if (searchText !== "") {
-                window.location.href = "order-songs.html?search=" + encodeURIComponent(searchText);
+                // Save the exact text to localStorage
+                localStorage.setItem("pendingSearch", searchText);
+                
+                // Send the user to the order page
+                window.location.href = "order-songs.html";
             }
         }
     });
-}
+} // END OF TAGER SØGETEKSTEN FRA INDEX.HTML OG SÆTTER IND I SØGEFELTET PÅ ORDER-SONGS.HTML
 
 let resetQueueBtn = document.getElementById("reset-queue");
 if (resetQueueBtn) {
