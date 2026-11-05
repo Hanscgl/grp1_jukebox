@@ -3,17 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jukebox</title>
     <!-- Bootstrap CSS -->
     <!-- Bootstrap JS Bundle (krævet for modal pop-up) -->
+    <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <title>Jukebox</title>
 </head>
 <body>
-    <div class="background-image"></div>
     <div id="albums"></div>
     <script src="../db/tracklist.js"></script>
     <script src="../db/showTracks.js"></script>
@@ -35,7 +34,7 @@
         <div id="main-content">
             <!-- Søgefunktionalitet tilføjet i topnav --> 
             <div class="topnav">
-                <input type="text" id="searchInput" placeholder="Søg efter en sang eller kunstner..">
+                <input type="text" id="searchInput" placeholder="Search for a song or an artist..">
             </div>
 
             <div id="playing">
@@ -57,10 +56,10 @@
             <div id="prices1" class="prices1">
                 <h3>
                     <img src="../images/coin.svg.svg" alt="Coin">
-                    Priser
+                    Prices
                 </h3>
-                <p>1 sang - 2 kr</p>
-                <p>3 sange - 5 kr</p>
+                <p>1 Song - 2 kr</p>
+                <p>3 Songs - 5 kr</p>
             </div>
     <!-- Queue div to display the current queue of songs -->
             <div id="queue-container">
@@ -84,10 +83,10 @@
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body text-center">
-            <p>Velkommen til admin-styrepanelet!</p>
-            <button class="btn btn-danger m-2">Pause / Afspil</button>
-            <button class="btn btn-warning m-2">Spring sang over</button>
-            <button id="reset-queue" class="btn btn-secondary m-2">Nulstil</button>
+            <p>You found the secret menu.</p>
+            <button class="btn btn-danger m-2">Pause / Play</button>
+            <button class="btn btn-warning m-2">Skip song</button>
+            <button id="reset-queue" class="btn btn-secondary m-2">Reset queue</button>
           </div>
         </div>
       </div>
