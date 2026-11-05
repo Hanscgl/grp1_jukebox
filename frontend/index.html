@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap CSS -->
-    <!-- Bootstrap JS Bundle (krævet for modal pop-up) -->
+    <!-- Bootstrap CSS og styles.css -->
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
@@ -15,36 +14,39 @@
 <body>
     <div id="albums"></div>
     <script src="../db/tracklist.js"></script>
-    <script src="../db/showTracks.js"></script>
+    <script src="../db/showTracks.js"></script> <!--Not being used-->
     
+    <!-- MAIN PAGE LAYOUT -->
     <div id="page-layout">
 
-        <!-- Left menu -->
+        <!-- LEFT MENU -->
         <div class="left-menu">
             <div id="logo">
                  <img id="admin-trigger" class="logo" src="../images/logo.png" alt="Jukebox Logo" style="cursor: pointer;">
             </div>
-            <!-- Menu buttons -->
+            <!-- LEFT MENU BUTTONS -->
             <div class="menu-buttons">
                 <a href="index.html" class="active"><i class="bi bi-house me-2"></i>Home</a>
                 <a href="order-songs.html"><i class="bi bi-music-note-beamed me-2"></i>Order Song</a>
             </div>
         </div>
 
+        <!-- MAIN/MIDDLE CONTENT -->
         <div id="main-content">
-            <!-- Søgefunktionalitet tilføjet i topnav --> 
+            <!-- Searchbar i toppen --> 
             <div class="topnav">
                 <input type="text" id="searchInput" placeholder="Search for a song or an artist..">
             </div>
-
+            
+            <!-- Now Playing sektion -->
             <div id="playing">
                 <h1>Now Playing</h1>
                 <img id=album src="../images/album.jpg" alt="Now Playing">
                 <h2 id="title-song">No song queued</h2>
-                <!-- need script for how to get current song info in queue -->
                 <h3 id="artist-song"> Artist </h3>
                 <p id="album-song">Album </p>
                 
+                <!-- Tidslinje for sangen -->
                 <progress id="song-progress" value="0" max="100"></progress>
                 <div style="display: flex; justify-content: space-between; width: 250px; margin: 5px auto 0 auto; font-size: 14px; color: #fff;">
                     <span id="current-time">0:00</span>
@@ -52,6 +54,7 @@
             </div>
         </div>
 
+        <!-- RIGHT CONTENT (PRISER OG KØ)-->
         <div id="right-content">
             <div id="prices1" class="prices1">
                 <h3>
@@ -70,11 +73,11 @@
     </div>
 </div>
 
- <!-- Bootstrap JS Bundle (krævet for modal pop-up) -->
+ <!-- Bootstrap script (krævet for pop-up) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 
 
-     <!-- Bootstrap Modal / Pop-up til Admin Menu -->
+     <!-- Bootstrap pop-up til Admin Menu -->
     <div class="modal fade" id="adminModal" tabindex="-1" aria-labelledby="adminModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content" style="background-color: #2a1b3d; color: white; border: 2px solid #ff4b5c;">

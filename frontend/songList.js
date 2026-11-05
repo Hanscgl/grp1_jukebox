@@ -1,20 +1,21 @@
 
 
-// defines the variables -- 
+// defines the variables 
 let cart = [];
 let cartSongs = document.getElementById("cart-songs");
 let totalSongs = document.getElementById("total-songs");
 let paymentTotal = document.getElementById("payment-total");
 let songList = document.getElementById("song-list");
-let searchElement = document.getElementById("songSearch"); // Ensure this ID matches your HTML input
+let searchElement = document.getElementById("songSearch");
 
-// 1. Array to hold all flattened track data for the search filter
+// Empty Array to hold all flattened track data for the search filter
 let allTracks = []; 
 
+// Fetch the albums data from the JSON file and put it into the allTracks array
 fetch("../db/albums.json")
     .then(response => response.json())
     .then(data => {
-        // 2. Flatten the nested JSON (albums -> tracks) into a single array
+        // Flatten the nested JSON (albums -> tracks) into a single array
         data.albums.forEach(album => {
             album.tracks.forEach(track => {
                 allTracks.push({
@@ -25,6 +26,7 @@ fetch("../db/albums.json")
             });
         });
 
+        // Søgefunktion til at søge på order-songs.html siden
         if (searchElement) {
             searchElement.addEventListener("input", function () {
                 let searchText = searchElement.value.toLowerCase();
@@ -34,11 +36,11 @@ fetch("../db/albums.json")
                         track.artist.toLowerCase().includes(searchText)
                     );
                 });
-                showTracks(results);
+                showTracks(results); // Shows results from the search term
             });
         }
 
-        // NOW check localStorage and trigger the search AFTER data is ready
+        // Check localStorage from the searchbar on index.html and trigger the search AFTER data is ready
         let savedSearchText = localStorage.getItem("pendingSearch");
 
         if (savedSearchText && searchElement) {
@@ -46,20 +48,21 @@ fetch("../db/albums.json")
             searchElement.dispatchEvent(new Event("input")); // Triggers the listener above
             localStorage.removeItem("pendingSearch");
         } else {
-            // If no search came from index.html, just show everything
+            // If no search came from index.html, just show all songs by default
             showTracks(allTracks);
         }
     });
 
-// 3. Extracted rendering logic into a reusable function
+// Extracted rendering logic into a reusable function
 function showTracks(tracksToDisplay) {
     songList.innerHTML = ""; // Clear existing list before rendering new results
 
+    // Loop through the tracks and create a HTML div for each song
     tracksToDisplay.forEach(track => {
         let song = document.createElement("div");
         song.className = "song";
 
-        // Fixed missing quotation mark in the button type attribute
+        // Text in each div for diaplying songs and a button for adding to cart
         song.innerHTML = `
             <h4>${track.title}</h4>
             <p>${track.artist}</p>
@@ -78,6 +81,7 @@ function showTracks(tracksToDisplay) {
             cartSong.className = "cart-song";
             cartSong.textContent = track.title;
            
+            // Button for removing a song from cart
             let deleteButton = document.createElement("button");
             deleteButton.textContent = "X";
             deleteButton.type = "button";
@@ -85,6 +89,7 @@ function showTracks(tracksToDisplay) {
             cartSong.appendChild(deleteButton);
             cartSongs.appendChild(cartSong);
 
+            // Updates the price for the songs in the cart
             deleteButton.addEventListener("click", function () {
                 cart.splice(cart.indexOf(track.title), 1);
                 cartSongs.removeChild(cartSong);
@@ -98,7 +103,7 @@ function showTracks(tracksToDisplay) {
     });
 }
 
-// 4. Extracted price calculation to avoid duplication
+// Function for calculating the price for songs in cart
 function updatePrice() {
     let price = cart.length * 2;
     if (cart.length === 3) {
@@ -110,48 +115,6 @@ function updatePrice() {
         paymentTotal.textContent = price + " kr";
     }
 }
-
-
-// Get the search bar on the order page
-/*
-let orderSearchInput = document.getElementById("songSearch"); 
-
-if (orderSearchInput) {
-    // Check if there is a pending search saved in localStorage
-    let savedSearchText = localStorage.getItem("pendingSearch");
-
-    if (savedSearchText) {
-        // Insert the saved text into the search bar
-        orderSearchInput.value = savedSearchText;
-
-        // Trigger the 'input' event to automatically run the search filter function
-        orderSearchInput.dispatchEvent(new Event("input"));
-
-        // Remove the saved text so it doesn't trigger again on normal page reloads
-        localStorage.removeItem("pendingSearch");
-    }
-}
-
-
-// Search event listener setup
-if (searchElement) {
-    // Changed "searchInput" to standard "input" event for real-time filtering
-    searchElement.addEventListener("input", function () {
-        
-        let searchText = searchElement.value.toLowerCase();
-
-        let results = allTracks.filter(track => {
-            return (
-                track.title.toLowerCase().includes(searchText) ||
-                track.artist.toLowerCase().includes(searchText)
-            );
-        });
-
-        // Re-render list with filtered results
-        showTracks(results);
-    });
-}
-*/
 
 // --- Payment & Checkout Logic ---
 let paymentButton = document.getElementById("payment-button");
